@@ -44,8 +44,10 @@ A franchise can include different sets of shows, movies, other franchises, eg:
 
 ### Episode
 (Marge vs the Monorail, Blue Harvest)
-> `mix phx.gen.schema Media.Episode episodes episode_title:string episode_number:integer episode_season:integer episode_path_to_raw:string original_airdate:datetime show_id:references:shows episode_characters:array:characters`
-> `episode_scenes:array:references:scenes episode_clips:array:references:clips episode_credits:array:references:credits`
+> `mix phx.gen.schema Media.Episode episodes episode_title:string episode_number:integer episode_season:integer episode_path_to_raw:string original_airdate:datetime show_id:references:shows`
+> `episode_scenes:array:references:scenes episode_clips:array:references:clips
+episode_credits:array:references:credits
+episode_characters:array:characters`
 * episode title (string)
 * episode number (number)
 * season number (number)
@@ -69,3 +71,8 @@ A franchise can include different sets of shows, movies, other franchises, eg:
 * person (fk real_person)
 * a job (string)
 * for a episode (fk episode)
+
+```
+mix phx.gen.html Media Franchise franchises franchise_name:string --no-model
+mix phx.gen.html Media Show shows show_name:string franchise_id:references:franchises --no-model
+```

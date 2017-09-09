@@ -1,12 +1,12 @@
 defmodule Umedia.Media.Franchise do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Umedia.Media.Franchise
-
+  alias Umedia.Media.{Franchise, Show}
 
   schema "franchises" do
     field :franchise_name, :string
-
+    has_many :franchise_shows, Show
+    has_many :franchise_episodes, through: [:franchise_shows, :show_episodes]
     timestamps()
   end
 

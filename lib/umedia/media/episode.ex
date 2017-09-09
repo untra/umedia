@@ -1,8 +1,8 @@
 defmodule Umedia.Media.Episode do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Umedia.{Media, Brain}
   alias Umedia.Media.Episode
-
 
   schema "episodes" do
     field :episode_number, :integer
@@ -11,7 +11,11 @@ defmodule Umedia.Media.Episode do
     field :episode_title, :string
     field :original_airdate, :naive_datetime
     field :show_id, :id
-
+    has_many :episode_scenes, Media.Scene
+    has_many :episode_credits, Media.Credit
+    has_many :episode_clips, through: [:episode_scenes, :scene_clips]
+    has_many :episode_characters, through: [:episode_scenes, :scene_characters]
+    has_many :episode_locations, through: [:episode_scenes, :scene_locations]
     timestamps()
   end
 

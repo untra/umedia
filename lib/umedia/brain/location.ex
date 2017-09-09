@@ -1,6 +1,7 @@
 defmodule Umedia.Brain.Location do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Umedia.Media.Clip
   alias Umedia.Brain.Location
 
 
@@ -9,7 +10,7 @@ defmodule Umedia.Brain.Location do
     field :ml_interface_fk, :string
     field :name, :string
     field :real_place_id, :id
-
+    many_to_many :location_clips, Media.Clip, join_through: "clip_to_location"
     timestamps()
   end
 

@@ -3,7 +3,6 @@ defmodule Umedia.Media.Credit do
   import Ecto.Changeset
   alias Umedia.Media.Credit
 
-
   schema "credits" do
     field :effort, :string
     field :person_id, :id
